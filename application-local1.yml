@@ -1,0 +1,16 @@
+server:
+  port: 7080 #- Port in which kafka-ui will run.
+
+auth:
+  type: LOGIN_FORM
+
+spring:
+  security:
+    user:
+      name: admin
+      password: admin
+
+kafka:
+  clusters:
+    - bootstrapServers: localhost:9092
+      name: kafka
