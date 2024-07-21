@@ -7,6 +7,7 @@ kafka:
         sasl.mechanism: SCRAM-SHA-512        
         sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="<KAFKA_USERNAME>" password="<KAFKA_PASSWORD>";
 
+java -Dspring.config.additional-location=application-local1.yml --add-opens java.rmi/javax.rmi.ssl=ALL-UNNAMED -jar kafka-ui-api-v0.7.2.jar
 
 
 https://docs.kafka-ui.provectus.io/configuration/authentication/sasl_scram
