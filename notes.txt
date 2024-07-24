@@ -11,3 +11,13 @@ java -Dspring.config.additional-location=application-local1.yml --add-opens java
 
 
 https://docs.kafka-ui.provectus.io/configuration/authentication/sasl_scram
+
+
+kc.bat start-dev --db postgres --db-url=jdbc:postgresql://localhost:5432/keycloak --db-username postgres --db-password Rampoo@1981
+
+
+websites
+--------
+https://www.baeldung.com/java-keycloak-search-users
+https://gist.github.com/thomasdarimont/c4e739c5a319cf78a4cff3b87173a84b
+https://keycloak.discourse.group/t/keycloak-admin-client-in-spring-boot/2547/8

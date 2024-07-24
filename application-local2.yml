@@ -1,0 +1,91 @@
+server:
+  port: 7080 #- Port in which kafka-ui will run.
+
+
+auth:
+  type: OAUTH2
+  oauth2:
+    client:
+      keycloak:
+        clientId: kafkaui
+        clientSecret: 9FeYHLeuDpEk6UrkX2DkJyx0KlJEDtw2
+        scope: openid
+        issuer-uri: http://localhost:8080/realms/kafkaui
+        user-name-attribute: preferred_username
+        client-name: kafkaui
+        provider: keycloak
+        custom-params:
+          type: keycloak
+
+kafka:
+  clusters:
+    - bootstrapServers: 127.0.0.1:9092
+      name: uat2
+rbac:
+  roles:
+    - name: "Admin"
+      clusters:
+        - uat2
+      subjects:
+        - provider: oauth
+          type: role
+          value: "Admin"
+      permissions:
+        - resource: applicationconfig
+          actions: all
+      
+        - resource: clusterconfig
+          actions: all
+
+        - resource: topic
+          value: ".*"
+          actions: all
+
+        - resource: consumer
+          value: ".*"
+          actions: all
+
+        - resource: schema
+          value: ".*"
+          actions: all
+
+        - resource: connect
+          value: ".*"
+          actions: all
+
+        - resource: ksql
+          actions: all
+          
+        - resource: acl
+          actions: [ view ]
+    - name: "Developer"
+      clusters:
+        - uat2
+      subjects:
+        - provider: oauth
+          type: role
+          value: "Developer"
+      permissions:
+        - resource: clusterconfig
+          actions: [ "view" ]
+
+        - resource: topic
+          value: ".*"
+          actions: 
+            - VIEW
+            - MESSAGES_READ
+
+        - resource: consumer
+          value: ".*"
+          actions: [ view ]
+
+        - resource: schema
+          value: ".*"
+          actions: [ view ]
+
+        - resource: connect
+          value: ".*"
+          actions: [ view ]
+
+        - resource: acl
+          actions: [ view ]
