@@ -1,0 +1,9 @@
+open git bash console type following command to generate the key
+
+openssl req -newkey rsa:2048 -nodes  -keyout kc.key.pem -x509 -days 3650 -out kc.crt.pem
+
+create the database name keycloak in postgres
+
+type the following command in keycloak bin folder path
+
+kc start --https-port=8081 --https-certificate-file=d:\\keys\\kc.crt.pem --https-certificate-key-file=D:\\keys\\kc.key.pem --db=postgres --db-url=jdbc:postgresql://127.0.0.1:5432/keycloak --db-username=postgres --db-password=Rampoo@123 --hostname-strict=false
